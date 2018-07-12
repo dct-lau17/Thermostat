@@ -17,7 +17,7 @@ var thermostat;
     expect(thermostat.temperature).toEqual(23);
   });
 
-  it("increases temperature", function() {
+  it("decreases temperature", function() {
     thermostat.down(3);
     expect(thermostat.temperature).toEqual(17);
   });
