@@ -16,11 +16,36 @@
 
       gtag('config', 'UA-127973357-1');
     </script>
+    <script>
+          /**
+      * Function that tracks a click on an internal link in Analytics.
+      */
+      var trackInternalLink = function(value) {
+        gtag('event', 'click', {
+          'event_category': 'buttons',
+          'event_label': value,
+        });
+      }
+    </script>
+
+    <script>
+          /**
+      * Function that tracks a click on an internal link in Analytics.
+      */
+      var trackExternalLink = function(url) {
+        gtag('event', 'click', {
+          'event_category': 'external urls',
+          'event_label': url,
+          'transport_type': 'beacon',
+          'event_callback': function(){document.location = url;}
+        });
+      }
+    </script>
   </head>
   <body>
     <section>
       <h1 id="temperature"></h1>
-        <button id="temperature-up">+</button>
+        <button id="temperature-up" onclick="trackInternalLink('temperature-up'); return false;">+</button>
         <button id="temperature-up-by5">+5</button>
         <button id="temperature-down">-</button>
         <button id="temperature-down-by5">-5</button>
@@ -28,6 +53,8 @@
         power saving mode is <span id="power-saving-status">on</span>
         <button id="powersaving-on">PSM on</button>
         <button id="powersaving-off">PSM off</button>
+
+        <a href='http://google.com' onclick="trackExternalLink('http://google.com');return false;">Click me to go to google</a>
 
     </section>
   </body>
